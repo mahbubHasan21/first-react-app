@@ -10,6 +10,7 @@ class App extends Component {
       { bookName: "Python", writer: "Orwell" },
       { bookName: "C#", writer: "well" },
     ],
+    showBooks: true,
   };
 
   deleteBookState = (index) => {
@@ -33,23 +34,33 @@ class App extends Component {
     });
   };
 
-  render() {
-    const books = this.state.books.map((book, index) => {
-      return (
-        <Book
-          bookName={book.bookName}
-          writer={book.writer}
-          delete={() => this.deleteBookState(index)}
-          inputName={(event) => this.changeWithInputState(event, index)}
-          key={index}
-        />
-      );
+  toggleBooks = () => {
+    this.setState({
+      showBooks: !this.state.showBooks,
     });
+  };
+
+  render() {
+    let books = null;
+    if (this.state.showBooks) {
+      books = this.state.books.map((book, index) => {
+        return (
+          <Book
+            bookName={book.bookName}
+            writer={book.writer}
+            delete={() => this.deleteBookState(index)}
+            inputName={(event) => this.changeWithInputState(event, index)}
+            key={index}
+          />
+        );
+      });
+    }
 
     return (
       <div className="app">
         <h2>Book list</h2>
-        {books};
+        <button onClick={this.toggleBooks}>Toggle book</button>
+        {books}
       </div>
     );
   }

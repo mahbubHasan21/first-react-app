@@ -2,6 +2,9 @@ body {
   margin: 0px;
   padding: 0px;
 }
+.app {
+  text-align: center;
+}
 .app h2 {
   text-align: center;
   background-color: rgb(201, 222, 253);
@@ -20,4 +23,14 @@ body {
   border: none;
   padding: 10px;
   border-radius: 5px;
+}
+button {
+  background-color: rgb(201, 222, 253);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgb(188, 213, 252);
 }
