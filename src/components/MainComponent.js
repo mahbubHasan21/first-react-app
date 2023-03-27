@@ -58,11 +58,10 @@ class MainComponent extends Component {
     return (
       <div className="app">
         <h2>Book list</h2>
-        {this.state.showBooks ? (
-          <button onClick={this.toggleBooks}>Hide books</button>
-        ) : (
-          <button onClick={this.toggleBooks}>Show books</button>
-        )}
+
+        <button onClick={this.toggleBooks}>
+          {this.state.showBooks ? "Hide books" : "Show books"}
+        </button>
 
         {books}
       </div>
