@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink, Outlet, Route, Routes } from "react-router-dom";
 import Book from "./representational/Book";
 
 class MainComponent extends Component {
@@ -57,13 +58,48 @@ class MainComponent extends Component {
 
     return (
       <div className="app">
-        <h2>Book list</h2>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <nav>
+                  <ul>
+                    <li>
+                      <NavLink to="/" exact="true">
+                        Home
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/add-book">Add book</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/about">About</NavLink>
+                    </li>
+                  </ul>
+                </nav>
+                <Outlet />
+              </>
+            }
+          >
+            <Route
+              index
+              element={
+                <>
+                  <h2>Book list</h2>
 
-        <button onClick={this.toggleBooks}>
-          {this.state.showBooks ? "Hide books" : "Show books"}
-        </button>
+                  <button onClick={this.toggleBooks}>
+                    {this.state.showBooks ? "Hide books" : "Show books"}
+                  </button>
 
-        {books}
+                  {books}
+                </>
+              }
+            />
+            <Route path="/add-book" element={<h2>Add new book</h2>} />
+            <Route path="/about" element={<h2>About</h2>} />
+          </Route>
+        </Routes>
       </div>
     );
   }
