@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Book from "./representational/Book";
+import Navigation from "./representational/Navigation";
 
 class MainComponent extends Component {
   state = {
@@ -41,64 +42,34 @@ class MainComponent extends Component {
   };
 
   render() {
-    let books = null;
-    if (this.state.showBooks) {
-      books = this.state.books.map((book, index) => {
-        return (
-          <Book
-            bookName={book.bookName}
-            writer={book.writer}
-            delete={() => this.deleteBookState(index)}
-            inputName={(event) => this.changeWithInputState(event, index)}
-            key={index}
-          />
-        );
-      });
-    }
+    const books = this.state.books.map((book, index) => {
+      return (
+        <Book
+          bookName={book.bookName}
+          writer={book.writer}
+          delete={() => this.deleteBookState(index)}
+          inputName={(event) => this.changeWithInputState(event, index)}
+          key={index}
+        />
+      );
+    });
 
     return (
       <div className="app">
+        <Navigation />
+
         <Routes>
           <Route
             path="/"
             element={
-              <>
-                <nav>
-                  <ul>
-                    <li>
-                      <NavLink to="/" exact="true">
-                        Home
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/add-book">Add book</NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/about">About</NavLink>
-                    </li>
-                  </ul>
-                </nav>
-                <Outlet />
-              </>
+              <div>
+                <h2>Book list</h2>
+                {books}
+              </div>
             }
-          >
-            <Route
-              index
-              element={
-                <>
-                  <h2>Book list</h2>
-
-                  <button onClick={this.toggleBooks}>
-                    {this.state.showBooks ? "Hide books" : "Show books"}
-                  </button>
-
-                  {books}
-                </>
-              }
-            />
-            <Route path="/add-book" element={<h2>Add new book</h2>} />
-            <Route path="/about" element={<h2>About</h2>} />
-          </Route>
+          />
+          <Route path="/add-book" element={books} />
+          <Route path="/about" element={<h2>About</h2>} />
         </Routes>
       </div>
     );
