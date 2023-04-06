@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Routes } from "react-router-dom";
+import NewBook from "./NewBook";
 import Book from "./representational/Book";
 import Navigation from "./representational/Navigation";
 
@@ -68,7 +69,7 @@ class MainComponent extends Component {
               </div>
             }
           />
-          <Route path="/add-book" element={books} />
+          <Route path="/add-book" element={<NewBook />} />
           <Route path="/about" element={<h2>About</h2>} />
         </Routes>
       </div>

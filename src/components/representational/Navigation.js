@@ -7,9 +7,7 @@ const Navigation = () => {
       <nav>
         <ul>
           <li>
-            <NavLink to="/" exact="true">
-              Home
-            </NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
             <NavLink to="/add-book">Add book</NavLink>
